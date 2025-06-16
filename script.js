@@ -1,4 +1,4 @@
-let books = [];
+const books = [];
 
 function Book(title, author, pages, read) {
     if (!new.target) {

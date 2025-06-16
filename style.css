@@ -1,0 +1,157 @@
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+    margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+    }
+}
+
+body {
+    /* 4. Add accessible line-height */
+    line-height: 1.5;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+    text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+    isolation: isolate;
+}
+
+body {
+    background-color: hsl(210deg 15% 6%);
+    color: whitesmoke;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --first-color: #42b883;
+    --seccond-color: #347474;
+    --third-color: #35495e;
+    --fourth-color: #ff7e67;
+}
+
+/* HEADER  */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 8rem;
+    padding-left: 44%;
+
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* SECTION  */
+
+section {
+    margin-top: 10rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    gap: 3rem;
+    width: 100%;
+}
+
+section .card {
+    display: grid;
+    border-radius: 20px;
+    margin: auto;
+    width: 25%;
+}
+
+.card h1 {
+    background-color: var(--seccond-color);
+    border-radius: 20px 20px 0px 0px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.card .book-info {
+    background-color: var(--third-color);
+    border-radius: 0px 0px 10px 10px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BUTTON  */
+
+aside {
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem;
+}
+
+aside button {
+    appearance: none;
+    border: none;
+    padding: 15px 40px;
+    background-color: var(--first-color);
+    border-radius: 10px;
+    color: gainsboro;
+    font-weight: bold;
+    box-shadow: 0 0 5px #999;
+}
