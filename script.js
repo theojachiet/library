@@ -1,4 +1,5 @@
 const books = [];
+const container = document.querySelector('section');
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -14,3 +15,77 @@ function Book(title, author, pages, read) {
 function storeBookInArray(Book) {
     books.push(Book);
 }
+
+function displayBooks() {
+    for (let book of books) {
+        //Create header and footer template
+        const card = document.createElement("div");
+        card.className = 'card';
+        const cardHeader = document.createElement('div');
+        cardHeader.className = 'card-header';
+        const bookInfo = document.createElement('div');
+        bookInfo.className = 'book-info';
+        card.appendChild(cardHeader);
+        card.appendChild(bookInfo);
+
+        //Add Header content
+        const title = document.createElement('h1');
+        title.textContent = book.title;
+        const bookImage = document.createElement('img');
+        bookImage.src = './images/book-open-page-variant-outline.svg';
+        const deleteIcon = document.createElement('img');
+        deleteIcon.src = './images/trash-can-outline.svg';
+        cardHeader.appendChild(bookImage);
+        cardHeader.appendChild(title);
+        cardHeader.appendChild(deleteIcon);
+
+        //Add Author
+        const separator = document.createElement('hr');
+        const authorLine = document.createElement('div');
+        authorLine.className = 'line';
+        const authorTag = document.createElement('p');
+        const authorTagText = document.createElement('span');
+        const authorIcon = document.createElement('img');
+        const authorName = document.createElement('p');
+
+        authorTagText.textContent = 'Author';
+        authorIcon.src = './images/account-edit.svg';
+        authorName.textContent = book.author;
+
+        authorTag.appendChild(authorIcon);
+        authorTag.appendChild(authorTagText);
+        authorLine.appendChild(authorTag);
+        authorLine.appendChild(authorName);
+        bookInfo.appendChild(authorLine)
+        bookInfo.appendChild(separator);
+
+        //Page Info
+        const separator2 = document.createElement('hr');
+        const pagesLine = document.createElement('div');
+        pagesLine.className = 'line';
+        const pagesTag = document.createElement('p');
+        const pagesTagText = document.createElement('span');
+        const pagesIcon = document.createElement('img');
+        const pagesNumber = document.createElement('p');
+
+        pagesTagText.textContent = 'Pages';
+        pagesIcon.src = './images/numeric-1-box-multiple-outline.svg';
+        pagesNumber.textContent = book.pages;
+
+        pagesTag.appendChild(pagesIcon);
+        pagesTag.appendChild(pagesTagText);
+        pagesLine.appendChild(pagesTag);
+        pagesLine.appendChild(pagesNumber);
+        bookInfo.appendChild(pagesLine);
+        bookInfo.appendChild(separator2);
+
+        //Status Info
+
+
+        container.appendChild(card);
+    }
+}
+
+let test = new Book('random', 'Teoslip', 354, true);
+storeBookInArray(test);
+displayBooks();

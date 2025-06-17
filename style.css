@@ -124,7 +124,7 @@ section .card {
     display: grid;
     border-radius: 20px;
     margin: auto;
-    width: clamp(350px, 25%, 25%);
+    width: clamp(350px, 40%, 25%);
 }
 
 /* extra space at the bottom */
