@@ -114,7 +114,7 @@ header {
 section {
     margin-top: 10rem;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(350px, 30%);
     justify-content: center;
     gap: 3rem;
     width: 100%;
@@ -124,7 +124,7 @@ section .card {
     display: grid;
     border-radius: 20px;
     margin: auto;
-    width: clamp(350px, 40%, 25%);
+    width: 100%;
 }
 
 /* extra space at the bottom */

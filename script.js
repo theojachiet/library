@@ -107,6 +107,10 @@ function displayBooks() {
     }
 }
 
-let test = new Book('random', 'Teoslip', 354, true);
-storeBookInArray(test);
+let tobie = new Book('Tobie Lolness', 'Thimothé de Fombelle', 354, true);
+let dune = new Book('Dune', 'Frank Herbert', 810, true);
+let karamasov = new Book('Les frères Karamasov', 'Piotr Dosteiovski', 1350, false);
+storeBookInArray(tobie);
+storeBookInArray(dune);
+storeBookInArray(karamasov);
 displayBooks();
