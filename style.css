@@ -145,6 +145,10 @@ section .card:last-child {
     max-width: 2rem;
 }
 
+.card-header a img {
+    width: 100%;
+}
+
 .card .book-info {
     background-color: var(--third-color);
     border-radius: 0px 0px 10px 10px;

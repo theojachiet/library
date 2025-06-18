@@ -16,11 +16,12 @@ function storeBookInArray(Book) {
     books.push(Book);
 }
 
-function displayBooks() {
-    for (let book of books) {
+function displayBooks(index) {
+    for (index; index < books.length; index++) {
         //Create header and footer template
         const card = document.createElement("div");
-        card.className = 'card';
+        card.classList.add('card', books[index].id);
+
         const cardHeader = document.createElement('div');
         cardHeader.className = 'card-header';
         const bookInfo = document.createElement('div');
@@ -30,14 +31,17 @@ function displayBooks() {
 
         //Add Header content
         const title = document.createElement('h1');
-        title.textContent = book.title;
+        title.textContent = books[index].title;
         const bookImage = document.createElement('img');
         bookImage.src = './images/book-open-page-variant-outline.svg';
+        const deleteButton = document.createElement('a');
+        deleteButton.classList.add('delete-button');
         const deleteIcon = document.createElement('img');
         deleteIcon.src = './images/trash-can-outline.svg';
+        deleteButton.appendChild(deleteIcon);
         cardHeader.appendChild(bookImage);
         cardHeader.appendChild(title);
-        cardHeader.appendChild(deleteIcon);
+        cardHeader.appendChild(deleteButton);
 
         //Add Author
         const separator = document.createElement('hr');
@@ -50,7 +54,7 @@ function displayBooks() {
 
         authorTagText.textContent = 'Author';
         authorIcon.src = './images/account-edit.svg';
-        authorName.textContent = book.author;
+        authorName.textContent = books[index].author;
 
         authorTag.appendChild(authorIcon);
         authorTag.appendChild(authorTagText);
@@ -70,7 +74,7 @@ function displayBooks() {
 
         pagesTagText.textContent = 'Pages';
         pagesIcon.src = './images/numeric-1-box-multiple-outline.svg';
-        pagesNumber.textContent = book.pages;
+        pagesNumber.textContent = books[index].pages;
 
         pagesTag.appendChild(pagesIcon);
         pagesTag.appendChild(pagesTagText);
@@ -90,7 +94,7 @@ function displayBooks() {
 
         statusTagText.textContent = 'Status (Read / To-Read)';
         statusIcon.src = './images/list-status.svg';
-        if (book.read) {
+        if (books[index].read) {
             statusState.src = './images/checkbox-marked-circle-outline.svg';
         } else {
             statusState.src = './images/radiobox-blank.svg';
@@ -116,6 +120,9 @@ storeBookInArray(dune);
 storeBookInArray(karamasov);
 storeBookInArray(coeur);
 
+displayBooks(0);
+
+
 //DIALOG LOGIC
 
 const dialog = document.querySelector('dialog');
@@ -139,7 +146,21 @@ confirmButton.addEventListener('click', (event) => {
     event.preventDefault();
     dialog.close();
     storeBookInArray(new Book(inputName, inputAuthor, inputPages, inputStatus));
-    displayBooks();
+    displayBooks(books.length - 1);
 });
 
-displayBooks();
+//Removing Books
+let deleteButtonNL = document.getElementsByClassName('delete-button');
+let deleteButton = Array.from(deleteButtonNL);
+let cardsNL = document.getElementsByClassName('card');
+let cards = Array.from(cardsNL);
+for (let i = 0; i < deleteButton.length; i++) {
+    deleteButton[i].addEventListener('click', () => {
+        console.log(i);
+        deleteBook(i);
+    });
+}
+
+function deleteBook(index) {
+    cards[index].remove();
+}
