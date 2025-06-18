@@ -80,7 +80,28 @@ function displayBooks() {
         bookInfo.appendChild(separator2);
 
         //Status Info
+        const statusLine = document.createElement('div');
+        statusLine.className = 'line';
+        const statusTag = document.createElement('p');
+        statusTag.className = 'status';
+        const statusTagText = document.createElement('span');
+        const statusIcon = document.createElement('img');
+        const statusState = document.createElement('img');
 
+        statusTagText.textContent = 'Status (Read / To-Read)';
+        statusIcon.src = './images/list-status.svg';
+        if (book.read) {
+            statusState.src = './images/checkbox-marked-circle-outline.svg';
+        } else {
+            statusState.src = './images/radiobox-blank.svg';
+        }
+
+        statusTag.appendChild(statusIcon);
+        statusTag.appendChild(statusTagText);
+        statusLine.appendChild(statusTag);
+        statusLine.appendChild(statusState);
+        bookInfo.appendChild(statusLine);
+        
 
         container.appendChild(card);
     }
