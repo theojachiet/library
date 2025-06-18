@@ -101,7 +101,7 @@ function displayBooks() {
         statusLine.appendChild(statusTag);
         statusLine.appendChild(statusState);
         bookInfo.appendChild(statusLine);
-        
+
 
         container.appendChild(card);
     }
@@ -115,14 +115,13 @@ storeBookInArray(tobie);
 storeBookInArray(dune);
 storeBookInArray(karamasov);
 storeBookInArray(coeur);
-displayBooks();
 
 //DIALOG LOGIC
 
 const dialog = document.querySelector('dialog');
 const showButton = document.querySelector('.add');
 const cancelButton = document.querySelector('.close');
-const confirmButton = document.querySelector('.submit');
+const confirmButton = dialog.querySelector('.submit');
 
 showButton.addEventListener('click', () => {
     dialog.showModal();
@@ -130,4 +129,17 @@ showButton.addEventListener('click', () => {
 
 cancelButton.addEventListener('click', () => {
     dialog.close();
-})
+});
+
+confirmButton.addEventListener('click', (event) => {
+    const inputName = document.querySelector('#book-name').value;
+    const inputAuthor = document.querySelector('#book-author').value;
+    const inputPages = document.querySelector('#book-pages').value;
+    const inputStatus = document.querySelector('#status').checked;
+    event.preventDefault();
+    dialog.close();
+    storeBookInArray(new Book(inputName, inputAuthor, inputPages, inputStatus));
+    displayBooks();
+});
+
+displayBooks();
