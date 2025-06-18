@@ -14,8 +14,26 @@
     <section>
 
     </section>
+    <dialog>
+        <form>
+            <div class="form-container">
+                <label for="book-name">Book Name<input type="text" id="book-name"
+                        placeholder="ex : Echos de la rumeur du monde"></label>
+                <label for="book-author">Book Author<input type="text" id="book-author"
+                        placeholder="ex : Frannçois Xavier Roussel"></label>
+                <label for="book-pages">Number of Pages<input type="number" id="book-pages"
+                        placeholder="ex : 420"></label>
+                <label for="book-status" id="check-status">Have you read it yet ?<input type="checkbox"
+                        id="status"></label>
+            </div>
+            <div class="button-container">
+                <button class="close" value="cancel">Cancel</button>
+                <button class="submit" value="default">Submit</button>
+            </div>
+        </form>
+    </dialog>
     <aside>
-        <button>Add Book <img src="./images/book-plus.svg" alt="Book plus"></button>
+        <button class="add">Add Book <img src="./images/book-plus.svg" alt="Book plus"></button>
     </aside>
 </body>
 

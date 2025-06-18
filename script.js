@@ -110,7 +110,24 @@ function displayBooks() {
 let tobie = new Book('Tobie Lolness', 'Thimothé de Fombelle', 354, true);
 let dune = new Book('Dune', 'Frank Herbert', 810, true);
 let karamasov = new Book('Les frères Karamasov', 'Piotr Dosteiovski', 1350, false);
+let coeur = new Book("L'attrappe coeur", 'Unknown to me', 200, true);
 storeBookInArray(tobie);
 storeBookInArray(dune);
 storeBookInArray(karamasov);
+storeBookInArray(coeur);
 displayBooks();
+
+//DIALOG LOGIC
+
+const dialog = document.querySelector('dialog');
+const showButton = document.querySelector('.add');
+const cancelButton = document.querySelector('.close');
+const confirmButton = document.querySelector('.submit');
+
+showButton.addEventListener('click', () => {
+    dialog.showModal();
+});
+
+cancelButton.addEventListener('click', () => {
+    dialog.close();
+})
