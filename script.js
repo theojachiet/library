@@ -2,6 +2,10 @@ const books = [];
 const container = document.querySelector('section');
 let statusNL = document.querySelectorAll('.line > img');//Detect all status icons
 let statusarr = Array.from(statusNL);
+let deleteButtonNL = document.getElementsByClassName('delete-button');
+let deleteButton = Array.from(deleteButtonNL);
+let cardsNL = document.getElementsByClassName('card');
+let cards = Array.from(cardsNL);
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -22,7 +26,8 @@ function displayBooks(index) {
     for (index; index < books.length; index++) {
         //Create header and footer template
         const card = document.createElement("div");
-        card.classList.add('card', books[index].id);
+        card.classList.add('card');
+        card.dataset.id = books[index].id;
 
         const cardHeader = document.createElement('div');
         cardHeader.className = 'card-header';
@@ -40,6 +45,7 @@ function displayBooks(index) {
         deleteButton.classList.add('delete-button');
         const deleteIcon = document.createElement('img');
         deleteIcon.src = './images/trash-can-outline.svg';
+        deleteButton.dataset.id = books[index].id;
         deleteButton.appendChild(deleteIcon);
         cardHeader.appendChild(bookImage);
         cardHeader.appendChild(title);
@@ -101,6 +107,7 @@ function displayBooks(index) {
         } else {
             statusState.src = './images/radiobox-blank.svg';
         }
+        statusState.dataset.id = books[index].id;
 
         statusTag.appendChild(statusIcon);
         statusTag.appendChild(statusTagText);
@@ -111,8 +118,7 @@ function displayBooks(index) {
 
         container.appendChild(card);
     }
-    statusNL = document.querySelectorAll('.line > img');//Detect all status icons
-    statusarr = Array.from(statusNL);
+    wireListeners();
 }
 
 let tobie = new Book('Tobie Lolness', 'Thimothé de Fombelle', 354, true);
@@ -157,16 +163,6 @@ confirmButton.addEventListener('click', (event) => {
 });
 
 //Removing Books
-let deleteButtonNL = document.getElementsByClassName('delete-button');
-let deleteButton = Array.from(deleteButtonNL);
-let cardsNL = document.getElementsByClassName('card');
-let cards = Array.from(cardsNL);
-
-for (let i = 0; i < deleteButton.length; i++) {
-    deleteButton[i].addEventListener('click', () => {
-        deleteBook(i);
-    });
-}
 
 function deleteBook(index) {
     cards[index].remove();
@@ -174,28 +170,36 @@ function deleteBook(index) {
 
 //Changing read status
 
-for (let i = 0; i < statusarr.length; i++) {
-    statusarr[i].addEventListener('click', () => {
-        console.log('here');
+Book.prototype.changeStatus = function () {
+    this.read = !this.read;
+}
+
+
+function wireListeners() {
+    deleteButton = [...document.getElementsByClassName('delete-button')];
+    statusarr = [...document.querySelectorAll('.line > img')];
+
+    deleteButton.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const index = books.findIndex(b => b.id === id);
+            if (index === -1) return;
+            books.splice(index, 1);
+            const card = document.querySelector(`.card[data-id="${id}"]`);
+            card?.remove();
+        });
+    });
+
+
+    statusarr.forEach((img, i) => img.onclick = () => {
         books[i].changeStatus();
         if (books[i].read) {
-            statusarr[i].src = './images/checkbox-marked-circle-outline.svg';
+            img.src = './images/checkbox-marked-circle-outline.svg';
         } else {
-            statusarr[i].src = './images/radiobox-blank.svg';
+            img.src = './images/radiobox-blank.svg';
         }
-    })
+    });
 }
-
-Book.prototype.changeStatus = function () {
-    if (this.read) {
-        this.read = false;
-    } else {
-        this.read = true;
-    }
-}
-
-
-
 
 /*
 detect click on status icon
