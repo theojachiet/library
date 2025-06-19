@@ -123,8 +123,8 @@ function displayBooks(index) {
 
 let tobie = new Book('Tobie Lolness', 'Thimothé de Fombelle', 354, true);
 let dune = new Book('Dune', 'Frank Herbert', 810, true);
-let karamasov = new Book('Les frères Karamasov', 'Piotr Dosteiovski', 1350, false);
-let coeur = new Book("L'attrappe coeur", 'Unknown to me', 200, true);
+let karamasov = new Book('Les frères Karamasov', 'Fiodor Dostoïevski', 915, false);
+let coeur = new Book("L'attrappe coeur", 'J.D. Salinger', 200, true);
 storeBookInArray(tobie);
 storeBookInArray(dune);
 storeBookInArray(karamasov);
