@@ -1,5 +1,7 @@
 const books = [];
 const container = document.querySelector('section');
+let statusNL = document.querySelectorAll('.line > img');//Detect all status icons
+let statusarr = Array.from(statusNL);
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -109,6 +111,8 @@ function displayBooks(index) {
 
         container.appendChild(card);
     }
+    statusNL = document.querySelectorAll('.line > img');//Detect all status icons
+    statusarr = Array.from(statusNL);
 }
 
 let tobie = new Book('Tobie Lolness', 'Thimothé de Fombelle', 354, true);
@@ -123,7 +127,7 @@ storeBookInArray(coeur);
 displayBooks(0);
 
 
-//DIALOG LOGIC
+//DIALOG LOGIC Add Book
 
 const dialog = document.querySelector('dialog');
 const showButton = document.querySelector('.add');
@@ -147,6 +151,9 @@ confirmButton.addEventListener('click', (event) => {
     dialog.close();
     storeBookInArray(new Book(inputName, inputAuthor, inputPages, inputStatus));
     displayBooks(books.length - 1);
+    //Re-detecting the icons with new books
+    statusNL = document.querySelectorAll('.line > img');//Detect all status icons
+    statusarr = Array.from(statusNL);
 });
 
 //Removing Books
@@ -154,9 +161,9 @@ let deleteButtonNL = document.getElementsByClassName('delete-button');
 let deleteButton = Array.from(deleteButtonNL);
 let cardsNL = document.getElementsByClassName('card');
 let cards = Array.from(cardsNL);
+
 for (let i = 0; i < deleteButton.length; i++) {
     deleteButton[i].addEventListener('click', () => {
-        console.log(i);
         deleteBook(i);
     });
 }
@@ -164,3 +171,36 @@ for (let i = 0; i < deleteButton.length; i++) {
 function deleteBook(index) {
     cards[index].remove();
 }
+
+//Changing read status
+
+for (let i = 0; i < statusarr.length; i++) {
+    statusarr[i].addEventListener('click', () => {
+        console.log('here');
+        books[i].changeStatus();
+        if (books[i].read) {
+            statusarr[i].src = './images/checkbox-marked-circle-outline.svg';
+        } else {
+            statusarr[i].src = './images/radiobox-blank.svg';
+        }
+    })
+}
+
+Book.prototype.changeStatus = function () {
+    if (this.read) {
+        this.read = false;
+    } else {
+        this.read = true;
+    }
+}
+
+
+
+
+/*
+detect click on status icon
+find on which book card it belongs
+change object status
+change object class
+draw the icon with css
+*/
