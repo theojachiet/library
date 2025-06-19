@@ -191,15 +191,22 @@ function wireListeners() {
     });
 
 
-    statusarr.forEach((img, i) => img.onclick = () => {
-        books[i].changeStatus();
-        if (books[i].read) {
-            img.src = './images/checkbox-marked-circle-outline.svg';
-        } else {
-            img.src = './images/radiobox-blank.svg';
-        }
+    statusarr.forEach((img) => {
+        img.addEventListener('click', () => {
+            const id = img.dataset.id;
+            const book = books.find(b => b.id === id);
+            if (!book) return;
+            book.changeStatus();
+            if (book.read) {
+                img.src = './images/checkbox-marked-circle-outline.svg';
+            } else {
+                img.src = './images/radiobox-blank.svg';
+            }
+
+        });
     });
 }
+
 
 /*
 detect click on status icon
