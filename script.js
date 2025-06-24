@@ -1,3 +1,13 @@
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
+}
+
 const books = [];
 const container = document.querySelector('section');
 let statusNL = document.querySelectorAll('.line > img');//Detect all status icons
@@ -6,17 +16,6 @@ let deleteButtonNL = document.getElementsByClassName('delete-button');
 let deleteButton = Array.from(deleteButtonNL);
 let cardsNL = document.getElementsByClassName('card');
 let cards = Array.from(cardsNL);
-
-function Book(title, author, pages, read) {
-    if (!new.target) {
-        throw Error('You must have the keyword "new" to call this constructor');
-    }
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID();
-}
 
 function storeBookInArray(Book) {
     books.push(Book);
@@ -206,12 +205,3 @@ function wireListeners() {
         });
     });
 }
-
-
-/*
-detect click on status icon
-find on which book card it belongs
-change object status
-change object class
-draw the icon with css
-*/
