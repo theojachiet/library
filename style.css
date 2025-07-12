@@ -2,26 +2,26 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* 2. Remove default margin */
 * {
-    margin: 0;
+  margin: 0;
 }
 
 /* 3. Enable keyword animations */
 @media (prefers-reduced-motion: no-preference) {
-    html {
-        interpolate-size: allow-keywords;
-    }
+  html {
+    interpolate-size: allow-keywords;
+  }
 }
 
 body {
-    /* 4. Add accessible line-height */
-    line-height: 1.5;
-    /* 5. Improve text rendering */
-    -webkit-font-smoothing: antialiased;
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
 }
 
 /* 6. Improve media defaults */
@@ -30,8 +30,8 @@ picture,
 video,
 canvas,
 svg {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 /* 7. Inherit fonts for form controls */
@@ -39,7 +39,7 @@ input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 /* 8. Avoid text overflows */
@@ -50,12 +50,12 @@ h3,
 h4,
 h5,
 h6 {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* 9. Improve line wrapping */
 p {
-    text-wrap: pretty;
+  text-wrap: pretty;
 }
 
 h1,
@@ -64,7 +64,7 @@ h3,
 h4,
 h5,
 h6 {
-    text-wrap: balance;
+  text-wrap: balance;
 }
 
 /*
@@ -72,248 +72,257 @@ h6 {
 */
 #root,
 #__next {
-    isolation: isolate;
+  isolation: isolate;
 }
 
 body {
-    background-color: hsl(210deg 15% 6%);
-    color: whitesmoke;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: hsl(210deg 15% 6%);
+  color: whitesmoke;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root {
-    --first-color: #42b883;
-    --seccond-color: #347474;
-    --third-color: #35495e;
-    --fourth-color: #ff7e67;
+  --first-color: #42b883;
+  --seccond-color: #347474;
+  --third-color: #35495e;
+  --fourth-color: #ff7e67;
 }
 
 hr {
-    border: 1px solid #888;
+  border: 1px solid #888;
 }
 
 /* HEADER  */
 
 header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 8rem;
-    margin: auto;
-    background-color: hsl(210deg 15% 6%);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 8rem;
+  margin: auto;
+  background-color: hsl(210deg 15% 6%);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 /* SECTION  */
 
 section {
-    margin-top: 10rem;
-    display: grid;
-    grid-template-columns: minmax(350px, 30%);
-    justify-content: center;
-    gap: 3rem;
-    width: 100%;
+  margin-top: 10rem;
+  display: grid;
+  grid-template-columns: minmax(350px, 30%);
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
 }
 
 section .card {
-    display: grid;
-    border-radius: 20px;
-    margin: auto;
-    width: 100%;
+  display: grid;
+  border-radius: 20px;
+  margin: auto;
+  width: 100%;
 }
 
 /* extra space at the bottom */
 section .card:last-child {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 .card .card-header {
-    background-color: var(--seccond-color);
-    border-radius: 20px 20px 0px 0px;
-    padding: 1rem;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
+  background-color: var(--seccond-color);
+  border-radius: 20px 20px 0px 0px;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-header img {
-    max-width: 2rem;
+  max-width: 2rem;
 }
 
 .card-header a img {
-    width: 100%;
+  width: 100%;
 }
 
 .card .book-info {
-    background-color: var(--third-color);
-    border-radius: 0px 0px 10px 10px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding-bottom: 1.5rem;
+  background-color: var(--third-color);
+  border-radius: 0px 0px 10px 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
 }
 
 .book-info .line {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
 }
 
 .status {
-    flex: 1;
+  flex: 1;
 }
 
 .book-info .line p {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .book-info .line img {
-    max-width: 2rem;
+  max-width: 2rem;
 }
 
 .book-info .line p img {
-    max-width: 2rem;
+  max-width: 2rem;
 }
 
 /* BUTTON  */
 
 aside {
-    position: fixed;
-    bottom: 2rem;
-    right: 6rem;
+  position: fixed;
+  bottom: 2rem;
+  right: 6rem;
 }
 
 aside button {
-    font-size: 1.2rem;
-    appearance: none;
-    border: none;
-    padding: 15px 40px;
-    background-color: var(--first-color);
-    border-radius: 10px;
-    color: gainsboro;
-    font-weight: bold;
-    box-shadow: 0 0 5px #999;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    align-items: center;
-    white-space: nowrap;
+  font-size: 1.2rem;
+  appearance: none;
+  border: none;
+  padding: 15px 40px;
+  background-color: var(--first-color);
+  border-radius: 10px;
+  color: gainsboro;
+  font-weight: bold;
+  box-shadow: 0 0 5px #999;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  white-space: nowrap;
 }
 
 button img {
-    max-width: 2rem;
+  max-width: 2rem;
 }
 
 /* DIALOG  */
 
 dialog {
-    color: #999;
-    margin: auto;
-    border: none;
-    padding: 50px;
-    border-radius: 20px;
-    font-size: 1.1rem;
-    background-color: rgb(0 0 0 / 90%);
+  color: #999;
+  margin: auto;
+  border: none;
+  padding: 50px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  background-color: rgb(0 0 0 / 90%);
 
-    width: clamp(500px, 500px, 50%);
+  width: clamp(500px, 500px, 50%);
 }
 
 ::backdrop {
-    backdrop-filter: blur(0.25rem);
+  backdrop-filter: blur(0.25rem);
 }
 
 /* FORM */
 .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
 }
 
 .form-container label {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .button-container {
-    margin-top: 2em;
-    display: flex;
-    justify-content: center;
-    gap: 2em;
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
 }
 
 input {
-    appearance: none;
-    border: 1px solid #555;
-    border-radius: 5px;
-    height: 2.5rem;
-    width: 100%;
-    color: #999;
-    background-color: #333;
-    padding-left: 1em;
+  appearance: none;
+  border: 1px solid #555;
+  border-radius: 5px;
+  height: 2.5rem;
+  width: 100%;
+  color: #999;
+  background-color: #333;
+  padding-left: 1em;
+  margin-bottom: 0;
 }
 
 input:hover {
-    outline: 2px solid white;
+  outline: 2px solid white;
 }
 
 input:focus {
-    outline: 2px solid white;
-    box-shadow: 0px 0px 15px var(--first-color);
+  outline: 2px solid white;
+  box-shadow: 0px 0px 15px var(--first-color);
 }
 
 input[type="checkbox"] {
-    -webkit-appearance: none;
-    appearance: inherit;
-    color: currentColor;
-    height: 1.15em;
-    width: 1.15em;
-    border-radius: 25%;
-    margin: auto;
-    display: grid;
-    place-content: center;
+  -webkit-appearance: none;
+  appearance: inherit;
+  color: currentColor;
+  height: 1.15em;
+  width: 1.15em;
+  border-radius: 25%;
+  margin: auto;
+  display: grid;
+  place-content: center;
 }
 
 input[type="checkbox"]:checked {
-    background-color: var(--first-color);
-    border: 2px solid var(--third-color);
+  background-color: var(--first-color);
+  border: 2px solid var(--third-color);
 }
 
 #check-status {
-    text-align: center;
+  text-align: center;
 }
 
 button {
-    text-align: center;
-    appearance: none;
-    padding: 0.7em 2em;
-    border-radius: 10px;
-    color: whitesmoke;
-    border: 2px solid white;
+  text-align: center;
+  appearance: none;
+  padding: 0.7em 2em;
+  border-radius: 10px;
+  color: whitesmoke;
+  border: 2px solid white;
 }
 
 .close {
-    background-color: #ff7e67;
+  background-color: #ff7e67;
 }
 
 .submit {
-    background-color: #42b883;
+  background-color: #42b883;
 }
 
 .error {
-    border: 1px solid red;
+  display: none;
 }
 
 .error.active {
-    border: 1px solid green;
+  display: inline;
+  width: 100%;
+  padding: 0.3em;
+  opacity: 1;
+
+  font-size: 80%;
+  color: white;
+  background-color: #ff7e67;
+  border-radius: 5px;
 }

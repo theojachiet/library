@@ -136,7 +136,7 @@ const DialogHandler = (function () {
     bookName.addEventListener('input', (e) => {
         if (bookName.validity.valid) {
             bookNameError.textContent = '';
-            bookName.className = 'error';
+            bookNameError.className = 'error';
         } else {
             displayBookNameError();
         }
@@ -156,7 +156,7 @@ const DialogHandler = (function () {
     bookAuthor.addEventListener('input', (e) => {
         if (bookAuthor.validity.valid) {
             bookAuthorError.textContent = '';
-            bookAuthor.className = 'error';
+            bookAuthorError.className = 'error';
         } else {
             displayBookAuthorError();
         }
@@ -176,7 +176,7 @@ const DialogHandler = (function () {
     bookPages.addEventListener('input', (e) => {
         if (bookPages.validity.valid) {
             bookPagesError.textContent = '';
-            bookPages.className = 'error';
+            bookPagesError.className = 'error';
         } else {
             displaybookPagesError();
         }
