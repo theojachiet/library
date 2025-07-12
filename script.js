@@ -125,6 +125,33 @@ const DialogHandler = (function () {
     const cancelButton = document.querySelector('.close');
     const confirmButton = dialog.querySelector('.submit');
 
+    const pages = document.querySelector('#book-pages');
+    const pagesError = document.querySelector('#book-pages + span.error');
+    let validPages = false;
+
+    pages.addEventListener('input', () => {
+        validPages = pages.validity.rangeOverflow || pages.validity.rangeUnderflow || !pages.validity.valid;
+
+        if (pages.validity.rangeOverflow || pages.validity.rangeUnderflow) {
+            displayPageError('I am expecting a number between 1 and  20 000');
+            console.log('error')
+        } else if (!pages.validity.valid) {
+            displayPageError();
+        } else if (!pages.value) {
+            displayPageError('Field cannot be empty');
+        } else {
+            pagesError.textContent = '';
+            pagesError.className = 'error';
+            validPages = true;
+        }
+    });
+
+    function displayPageError(errorMessage = 'invalid input') {
+        pagesError.textContent = errorMessage;
+        pagesError.className = 'error active';
+        validPages = false;
+    }
+
     showButton.addEventListener('click', () => {
         dialog.showModal();
     });
@@ -134,15 +161,21 @@ const DialogHandler = (function () {
         dialog.close();
     });
 
-    confirmButton.addEventListener('click', (event) => {
-        const inputName = document.querySelector('#book-name').value;
-        const inputAuthor = document.querySelector('#book-author').value;
-        const inputPages = document.querySelector('#book-pages').value;
-        const inputStatus = document.querySelector('#status').checked;
-        event.preventDefault();
-        dialog.close();
-        new Book(inputName, inputAuthor, inputPages, inputStatus).storeBookInArray();
-        Book.displayBooks(books.length - 1);
+    dialog.addEventListener('submit', (event) => {
+
+        if (!validPages) {
+            displayPageError();
+            event.preventDefault();
+        } else {
+            const inputName = document.querySelector('#book-name').value;
+            const inputAuthor = document.querySelector('#book-author').value;
+            const inputPages = document.querySelector('#book-pages').value;
+            const inputStatus = document.querySelector('#status').checked;
+
+            dialog.close();
+            new Book(inputName, inputAuthor, inputPages, inputStatus).storeBookInArray();
+            Book.displayBooks(books.length - 1);
+        }
     });
 })();
 

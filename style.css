@@ -309,3 +309,11 @@ button {
 .submit {
     background-color: #42b883;
 }
+
+.error {
+    border: 1px solid red;
+}
+
+.error.active {
+    border: 1px solid green;
+}
