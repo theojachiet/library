@@ -18,11 +18,13 @@
         <form novalidate>
             <div class="form-container">
                 <label for="book-name">Book Name<input type="text" id="book-name"
-                        placeholder="ex : Echos de la rumeur du monde" required></label>
+                        placeholder="ex : Echos de la rumeur du monde" maxlength="40" required>
+                    <span class="error" aria-live="polite"></span></label>
                 <label for="book-author">Book Author<input type="text" id="book-author"
-                        placeholder="ex : Frannçois Xavier Roussel"></label>
-                <label for="book-pages" >Number of Pages<input type="number" id="book-pages"
-                        placeholder="ex : 420" min="1" max="20000">
+                        placeholder="ex : François Xavier Roussel" maxlength="40" required>
+                    <span class="error" aria-live="polite"></span></label>
+                <label for="book-pages">Number of Pages<input type="number" id="book-pages" placeholder="ex : 420"
+                        min="1" max="20000" required>
                     <span class="error" aria-live="polite"></span></label>
                 <label for="book-status" id="check-status">Have you read it yet ?<input type="checkbox"
                         id="status"></label>

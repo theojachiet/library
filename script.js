@@ -125,33 +125,74 @@ const DialogHandler = (function () {
     const cancelButton = document.querySelector('.close');
     const confirmButton = dialog.querySelector('.submit');
 
-    const pages = document.querySelector('#book-pages');
-    const pagesError = document.querySelector('#book-pages + span.error');
-    let validPages = false;
+    const bookName = document.querySelector('#book-name');
+    const bookNameError = document.querySelector('#book-name + span.error');
+    const bookAuthor = document.querySelector('#book-author');
+    const bookAuthorError = document.querySelector('#book-author + span.error');
+    const bookPages = document.querySelector('#book-pages');
+    const bookPagesError = document.querySelector('#book-pages + span.error');
 
-    pages.addEventListener('input', () => {
-        validPages = pages.validity.rangeOverflow || pages.validity.rangeUnderflow || !pages.validity.valid;
-
-        if (pages.validity.rangeOverflow || pages.validity.rangeUnderflow) {
-            displayPageError('I am expecting a number between 1 and  20 000');
-            console.log('error')
-        } else if (!pages.validity.valid) {
-            displayPageError();
-        } else if (!pages.value) {
-            displayPageError('Field cannot be empty');
+    //BOOK NAME ERROR HANDLING
+    bookName.addEventListener('input', (e) => {
+        if (bookName.validity.valid) {
+            bookNameError.textContent = '';
+            bookName.className = 'error';
         } else {
-            pagesError.textContent = '';
-            pagesError.className = 'error';
-            validPages = true;
+            displayBookNameError();
         }
     });
 
-    function displayPageError(errorMessage = 'invalid input') {
-        pagesError.textContent = errorMessage;
-        pagesError.className = 'error active';
-        validPages = false;
+    function displayBookNameError() {
+        if (bookName.validity.valueMissing) {
+            bookNameError.textContent = 'This field cannot be empty';
+        } else if (bookName.validity.tooLong) {
+            bookNameError.textContent = `Name must be under ${bookName.maxLength} characters`;
+        }
+
+        bookNameError.classList = 'error active';
     }
 
+    //BOOK AUHTOR ERROR HANDLING
+    bookAuthor.addEventListener('input', (e) => {
+        if (bookAuthor.validity.valid) {
+            bookAuthorError.textContent = '';
+            bookAuthor.className = 'error';
+        } else {
+            displayBookAuthorError();
+        }
+    });
+
+    function displayBookAuthorError() {
+        if (bookAuthor.validity.valueMissing) {
+            bookAuthorError.textContent = 'This field cannot be empty';
+        } else if (bookAuthor.validity.tooLong) {
+            bookAuthorError.textContent = `Name must be under ${bookAuthor.maxLength} characters`;
+        }
+
+        bookAuthorError.classList = 'error active';
+    }
+
+    //PAGES ERROR HANDLING
+    bookPages.addEventListener('input', (e) => {
+        if (bookPages.validity.valid) {
+            bookPagesError.textContent = '';
+            bookPages.className = 'error';
+        } else {
+            displaybookPagesError();
+        }
+    });
+
+    function displaybookPagesError() {
+        if (bookPages.validity.valueMissing) {
+            bookPagesError.textContent = 'This field cannot be empty';
+        } else if (bookPages.validity.rangeUnderflow || bookPages.validity.rangeOverflow) {
+            bookPagesError.textContent = 'Value must be between 1 and 20 000';
+        }
+
+        bookPagesError.classList = 'error active';
+    }
+
+    //Show and cancel logic
     showButton.addEventListener('click', () => {
         dialog.showModal();
     });
@@ -161,12 +202,27 @@ const DialogHandler = (function () {
         dialog.close();
     });
 
+    //Submit logic
     dialog.addEventListener('submit', (event) => {
+        let submit = true;
+        event.preventDefault();
 
-        if (!validPages) {
-            displayPageError();
-            event.preventDefault();
-        } else {
+        if (!bookName.validity.valid) {
+            submit = false;
+            displayBookNameError();
+        }
+
+        if (!bookPages.validity.valid) {
+            submit = false;
+            displaybookPagesError();
+        }
+
+        if (!bookAuthor.validity.valid) {
+            submit = false;
+            displayBookAuthorError();
+        }
+
+        if (submit) {
             const inputName = document.querySelector('#book-name').value;
             const inputAuthor = document.querySelector('#book-author').value;
             const inputPages = document.querySelector('#book-pages').value;
@@ -176,6 +232,7 @@ const DialogHandler = (function () {
             new Book(inputName, inputAuthor, inputPages, inputStatus).storeBookInArray();
             Book.displayBooks(books.length - 1);
         }
+
     });
 })();
 
